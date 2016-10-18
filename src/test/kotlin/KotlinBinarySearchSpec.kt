@@ -7,18 +7,18 @@ import org.jetbrains.spek.api.dsl.it
  * NOTE: Install the Spek IntelliJ Plugin to run in IntelliJ
  */
 class KotlinBinarySearchSpec: Spek({
+    /*
+            1
+          2   3
+         4 5 6 7
+        8       9
+         */
+    fun tree(): Node {
+        return Node("1", Node("2", Node("4", Node("8")), Node("5")), Node("3", Node("6"), Node("7", null, Node("9"))))
+    }
+
     describe("Kotlin Binary Search tests") {
         val bs = KotlinBinarySearch()
-
-        /*
-                1
-              2   3
-             4 5 6 7
-            8       9
-             */
-        fun tree(): Node {
-            return Node("1", Node("2", Node("4", Node("8")), Node("5")), Node("3", Node("6"), Node("7", null, Node("9"))))
-        }
 
         it("should be correct for breadth first search") {
             val result = bs.bfs(tree())
@@ -49,7 +49,8 @@ class KotlinBinarySearchSpec: Spek({
         }
 
         describe("binarySearch") {
-            val primes = listOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89)
+            val primes = listOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47,
+                    53, 59, 61, 67, 71, 73, 79, 83, 89)
 
             it("should work for 67") {
                 expect(bs.binarySearch(67, primes)).to.equal(18)
