@@ -17,6 +17,15 @@ class BinarySearchSpockTest extends Specification {
          */
     def tree = { node('1', node('2', node('4', node('8')), node('5')), node('3', node('6'), node('7', null, node('9')))) }
 
+    def "breadth first search"() {
+        when:
+        def result = bs.bfs(tree())
+        println result
+
+        then:
+        result == ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    }
+
     def "depth first search preorder"() {
         when:
         def result = bs.dfs_preorder(tree())
